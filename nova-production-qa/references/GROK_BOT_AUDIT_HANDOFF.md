@@ -18,9 +18,10 @@ Provide all of the following, with no secrets:
 | Audit directive | Exact GitHub commit URL for `references/VETS_STANDING_AUDIT_DIRECTIVE.md`. |
 | Final artifact | Final MP4/image/audio file or controlled public review URL. |
 | Artifact binding | SHA-256 checksum, filename, file size, duration, resolution, codec, and creation timestamp. |
-| Source binding | Repository, branch, base SHA, final head SHA, and changed-file list where source-controlled content is involved. |
+| Source binding | Repository, branch, base SHA, final head SHA, changed-file list, and immutable bindings for every Nova Bible, policy, and scene reference. |
 | Nova audit input | Exact Grok image prompt, negative prompt, Nova Bible audit result, and representative opening/middle/end frames. |
-| Production evidence | Audio QA, video QA, test results, security scans, failures, fixes, and rollback procedure. |
+| Production evidence | Audio QA, video QA, test results, security scans, failures, fixes, immutable/retained private evidence location, and rollback procedure. |
+| Production authorization | Checksum-bound VETS approval record that identifies the exact approved action, artifact SHA-256, Pacific/UTC approval times, and rollback authority. |
 | Scene context | Episode number, assigned scene/activity, and relevant Scene Diversity Bible entry. |
 
 ## Paste This to Grok
@@ -35,7 +36,7 @@ Verify:
 2. Nova Bible compliance: character appearance, dog tags, 9:16 composition, SFW standard, and tattoo orientation. LEFT side of the frame must be Nova's right arm with the eagle sleeve, 1776, and E Pluribus Unum. RIGHT side must be bare with zero tattoos.
 3. Visual quality: natural human motion, proportional body/head relationship, emotion, no robotic or repetitive movement, unique background/activity.
 4. Audio quality: natural delivery, no startup echo, feedback, pop, clipping, duplicated layer, or synchronization issue.
-5. Production controls: explicit VETS approval state, no unauthorized publishing, tests/scans, rollback, and non-secret evidence preservation.
+5. Production controls: checksum-bound VETS approval, no unauthorized publishing, tests/scans, rollback, private evidence retention, and non-secret evidence preservation.
 
 Return exactly:
 - Audit tool native grade: NONE unless your authenticated official tool produces a grade.
@@ -47,6 +48,10 @@ Return exactly:
 
 Do not invent outputs, tool versions, test results, timestamps, SHAs, checksums, grades, or artifact details.
 ```
+
+## Required Governing References
+
+Use these sources together: `VETS_STANDING_AUDIT_DIRECTIVE.md`, `EXACT_REFERENCE_BINDING.md`, and `PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md`. A package without all three controls cannot receive a Grade A recommendation.
 
 ## Evidence Storage Standard
 

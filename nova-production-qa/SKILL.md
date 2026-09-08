@@ -9,7 +9,7 @@ Perform the final quality-assurance gate for a complete Nova video package. Do *
 
 ## Required Inputs
 
-Collect the final rendered video, final audio, final metadata/captions, source revision (when applicable), prior episode scene registry, and relevant audit evidence. If any final artifact is absent, return `AUDIT INCOMPLETE` and identify the missing item.
+Collect the final rendered video, final audio, final metadata/captions, source revision (when applicable), prior episode scene registry, and relevant audit evidence. Bind every governing document, prompt, scene record, and final asset according to [`references/EXACT_REFERENCE_BINDING.md`](references/EXACT_REFERENCE_BINDING.md). If any final artifact or required binding is absent, return `AUDIT INCOMPLETE` and identify the missing item.
 
 ## V2 Production Rules — Mandatory
 
@@ -50,7 +50,7 @@ If tattoo orientation is wrong, return `REJECT` immediately.
 
 # VETS Standing Audit Directive — Required Gate
 
-Read [`references/VETS_STANDING_AUDIT_DIRECTIVE.md`](references/VETS_STANDING_AUDIT_DIRECTIVE.md) before making an audit-grade claim or approving any code, configuration, workflow, or executable-document change. Apply it to the **exact final artifact**. The minimum passing grade is **A**, unless a stricter mission, protection, signed governance, regulatory, security, or production-critical requirement applies.
+Read [`references/VETS_STANDING_AUDIT_DIRECTIVE.md`](references/VETS_STANDING_AUDIT_DIRECTIVE.md), [`references/EXACT_REFERENCE_BINDING.md`](references/EXACT_REFERENCE_BINDING.md), and [`references/PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md`](references/PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md) before making an audit-grade claim or approving any code, configuration, workflow, or executable-document change. Apply them to the **exact final artifact**. The minimum passing grade is **A**, unless a stricter mission, protection, signed governance, regulatory, security, or production-critical requirement applies.
 
 ## Audit Evidence Requirements
 
@@ -66,7 +66,7 @@ For each auditable source-controlled or deployed artifact, preserve non-secret e
 | Complete findings | Preserve findings, remediation rounds, tests, security scans, and evidence location. |
 | Scope and rollback | State scope, material assumptions, production authorization state, and rollback method. |
 
-Never place API keys, passwords, tokens, cookies, private keys, protected user data, or secret environment values in public evidence.
+Never place API keys, passwords, tokens, cookies, private keys, protected user data, or secret environment values in public evidence. Store non-secret evidence in an operator-controlled, private, committed evidence location with the retention and access controls defined in [`references/PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md`](references/PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md).
 
 ## Independent Audit Protocol
 
@@ -75,6 +75,7 @@ Never place API keys, passwords, tokens, cookies, private keys, protected user d
 3. Preserve the audit prompt, complete response, run/session identifier where available, findings, test/scan results, remediation rounds, and checksum/evidence location.
 4. Do not self-certify or invent a grade. The implementation agent may run the audit but cannot alter its outcome. VETS retains final approval authority.
 5. If the head changes after review, report `AUDIT STALE — HEAD CHANGED` and rerun the applicable audit.
+6. Before a live mutation, enforce the checksum-bound VETS authorization record defined in [`references/PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md`](references/PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md). A bare GO message that is not tied to the final asset checksum is insufficient.
 
 ## Minimum Grade-A Decision Rubric
 
@@ -134,6 +135,7 @@ Medium findings unresolved:
 Tests:
 Security scans:
 Evidence path:
+Production authorization evidence path:
 Head changed after audit:
 Final audit status:
 
@@ -157,5 +159,6 @@ Human review and explicit VETS approval remain mandatory for live publication. A
 
 - [`VETS Standing Audit Directive`](references/VETS_STANDING_AUDIT_DIRECTIVE.md)
 - [`Grok-Bot Audit Handoff`](references/GROK_BOT_AUDIT_HANDOFF.md)
-- [`Nova Scene Diversity Bible`](https://github.com/jratdish1/knowledge-base/blob/main/nova/NOVA_SCENE_DIVERSITY_BIBLE.md)
+- [`Exact Reference Binding`](references/EXACT_REFERENCE_BINDING.md)
+- [`Production Authorization and Evidence Workflow`](references/PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md)
 - [`Nova Bible Audit Skill`](../nova-bible-audit/SKILL.md)
