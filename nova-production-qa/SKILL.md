@@ -76,6 +76,7 @@ Never place API keys, passwords, tokens, cookies, private keys, protected user d
 4. Do not self-certify or invent a grade. The implementation agent may run the audit but cannot alter its outcome. VETS retains final approval authority.
 5. If the head changes after review, report `AUDIT STALE — HEAD CHANGED` and rerun the applicable audit.
 6. Before a live mutation, enforce the checksum-bound VETS authorization record defined in [`references/PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md`](references/PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md). A bare GO message that is not tied to the final asset checksum is insufficient.
+7. Run the fixed control scan and enforce machine-readable pass/fail handling exactly as defined in [`references/VERIFICATION_OPERATIONS.md`](references/VERIFICATION_OPERATIONS.md). Do not substitute a verbal review for the control-scan result.
 
 ## Minimum Grade-A Decision Rubric
 
@@ -145,7 +146,7 @@ Rollback:
 Next action recommendation:
 ```
 
-Keep a sanitized summary in the Master Report. Preserve complete non-secret audit evidence in the designated evidence location.
+Keep a sanitized summary in the Master Report. Preserve complete non-secret audit evidence in the designated evidence location. Run `verify_repository_controls.py` on every source revision and `verify_production_gate.py` immediately before any live mutation; their documented exit codes and JSON statuses determine whether the workflow can proceed.
 
 ## Grok-Bot Handoff
 
@@ -161,4 +162,5 @@ Human review and explicit VETS approval remain mandatory for live publication. A
 - [`Grok-Bot Audit Handoff`](references/GROK_BOT_AUDIT_HANDOFF.md)
 - [`Exact Reference Binding`](references/EXACT_REFERENCE_BINDING.md)
 - [`Production Authorization and Evidence Workflow`](references/PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md)
+- [`Verification Operations`](references/VERIFICATION_OPERATIONS.md)
 - [`Nova Bible Audit Skill`](../nova-bible-audit/SKILL.md)

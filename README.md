@@ -22,6 +22,7 @@ The `nova-production-qa` skill embeds the **VETS Standing Audit Directive**. It 
 | [`Grok-Bot Audit Handoff`](nova-production-qa/references/GROK_BOT_AUDIT_HANDOFF.md) | Non-secret handoff checklist and paste-ready advisory-review prompt for a Grok-bot review. |
 | [`Exact Reference Binding`](nova-production-qa/references/EXACT_REFERENCE_BINDING.md) | Requires a commit SHA and file checksum for every governing Nova Bible, scene registry, prompt, and source document. |
 | [`Production Authorization and Evidence`](nova-production-qa/references/PRODUCTION_AUTHORIZATION_AND_EVIDENCE.md) | Defines the private, checksum-bound VETS approval record, evidence retention, and rollback gate required before a live mutation. |
+| [`Verification Operations`](nova-production-qa/references/VERIFICATION_OPERATIONS.md) | Specifies fixed repository and pre-production checks, machine-readable statuses, failure handling, and the GitHub-required-check configuration. |
 
 > A public GitHub file is accessible to a Grok-bot or other reviewer only when that bot is actually configured with access to this repository or is provided the public commit URL. These documents do not authorize publishing, scheduling, secret handling, or self-certification. Explicit VETS approval remains mandatory for live publication.
 

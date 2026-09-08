@@ -1,0 +1,39 @@
+name: Nova Production QA Controls
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify public skills controls
+        run: >-
+          python3 nova-production-qa/scripts/verify_repository_controls.py
+          --repo .
+          --result nova-production-qa-controls-result.json
+
+      - name: Upload non-secret verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nova-production-qa-controls-${{ github.sha }}
+          path: nova-production-qa-controls-result.json
+          if-no-files-found: error
+          retention-days: 90
