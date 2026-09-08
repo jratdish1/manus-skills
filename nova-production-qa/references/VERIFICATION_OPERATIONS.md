@@ -2,6 +2,18 @@
 
 Run the following checks on **every pull request and every push** that changes the public `jratdish1/manus-skills` repository. Run the production authorization verifier again immediately before any live scheduling, publication, or production configuration mutation.
 
+## Governance Responsibility and Cadence
+
+| Responsible party | Required action | Trigger |
+|---|---|---|
+| Implementation agent | Run the repository-control verifier locally before requesting review or creating a release candidate; preserve the non-secret result. | Every source revision. |
+| GitHub Actions | Run the same repository-control verifier and retain the result artifact. | Every pull request and every push. |
+| Independent OpenAI/ChatGPT auditor | Review the exact source and artifact evidence under the VETS rubric. | After the final revision/artifact is assembled and after any material change. |
+| VETS | Review the complete evidence package and provide the checksum-bound authorization record for any live production action. | Immediately before any publication, schedule, or production configuration mutation. |
+| VETS or delegated named operator | Reconfirm the control set, retention, access, and branch-protection posture. | Quarterly and after any incident, unauthorized-mutation attempt, or repository-access change. |
+
+A failed check, expired approval, source/artifact checksum mismatch, or absent evidence requires immediate `HOLD`. Do not defer the failure to the next scheduled review.
+
 ## Required Checks
 
 | Control | When | Command | Pass condition | Failure handling |
@@ -49,6 +61,12 @@ Otherwise return the relevant `AUDIT REQUIRED`, `AUDIT STALE — HEAD CHANGED`, 
 
 The repository includes a GitHub Actions workflow that runs the repository-control scan for every pull request and push. Configure repository branch protection or rulesets so **Nova Production QA Controls / verify** is required before merging a pull request into `main`. Do not rely on a green check from an earlier SHA.
 
+## Evidence Format and Size Limits
+
+Keep evidence structured and bounded. Approval records and verifier results must be UTF-8 JSON no larger than **1 MiB**. Independent audit evidence must be UTF-8 JSON or Markdown no larger than **10 MiB** per file. For larger outputs, split files into ordered, individually checksummed parts and record a manifest. Store video, audio, image, and archive artifacts separately; preserve their filename, size, MIME/type, and SHA-256 in the evidence record rather than embedding binary data in a Markdown or JSON audit log.
+
+Reject malformed, unparseable, oversized, or unchecksummed evidence as `AUDIT INCOMPLETE`. Never use an oversized evidence file as a reason to omit a required audit; split it safely and retain all parts.
+
 ## Retention and Privacy
 
-Keep complete non-secret audit outputs, the approval record, test results, SHA-256 checksums, and rollback record in the private source-of-truth repository for at least 24 months. Keep public reports sanitized. Never place credentials, tokens, private URLs, cookies, secrets, or protected user data in the public skills repository or publicly visible Actions logs.
+Keep complete non-secret audit outputs, the approval record, test results, SHA-256 checksums, and rollback record in the private source-of-truth repository for at least 24 months. Keep public reports sanitized. The repository-control scan executes on every pull request and every push; a named VETS/delegated-operator review occurs at least quarterly. Never place credentials, tokens, private URLs, cookies, secrets, or protected user data in the public skills repository or publicly visible Actions logs.
